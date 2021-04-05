@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="post-data-sys-api-flowFlow" doc:id="fa5b6fad-4b67-416e-9a2e-d647760a731b" >
+		<logger level="INFO" doc:name="Logger" doc:id="abb975df-1bcc-4415-805d-346671a28509" message="system-api-post-data-flow is started"/>
+		<ee:transform doc:name="Transform Message" doc:id="affc858a-a7d8-4c1b-b9ac-cd93a51eed2b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  status: "success",
+  Message: "Order has been created successful",
+  api: "system api",
+  env_type : p('file.type')
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

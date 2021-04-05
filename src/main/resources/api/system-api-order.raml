@@ -1,0 +1,62 @@
+#%RAML 1.0
+title: system-api-order
+description: This interface gives information about order APIs
+baseUri: http://localhost:8081/api/system
+version: v1
+
+/order:
+  post:
+    description: This operation creates the Order
+    body:
+      application/json:
+        example: !include createOrderRequest.json
+
+    responses:
+      201:
+        description: This is the status code for create order
+        body:
+          application/json:
+            example: !include 201.json
+      404:
+        description: Resource not found
+        body:
+          application/json:
+            example: {"status":"failed","message":"URI is not found"}
+      500:
+        description: Internal server error
+        body:
+          application/json:
+            example: {"status":"failed","message":"Order failed due to internal server error"}
+              
+  get:
+   description: Get order by order id
+   queryParameters:
+      orderId: string
+       
+   responses:
+    200:
+      body:
+        application/json:
+          example: !include 200.json
+    404:
+      body:
+              application/json:
+                      example:  {"status":"failed","message":"URI is not found"}
+    500:
+      body:
+        application/json:
+          example: {"status":"failed","message":"Order failed due to internal server error"}
+
+  /orderByCustomerId:
+    get:
+      queryParameters:
+        customerId: string
+      responses:
+        200:
+          body:
+            application/json:
+              example: {"status":"success","message":"Order created by CustomerId"}
+        404:
+          body:
+            application/json:
+              example: {"status":"failed","message":"CustomerId Not Found"}
