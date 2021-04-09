@@ -134,7 +134,8 @@ output application/json
 ---
 {
   orderId: "77565",
-  amount: "67.89"
+  amount: "67.89",
+  item : "mobile"
 }]]></ee:set-payload>
             </ee:message>
         </ee:transform>
